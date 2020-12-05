@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Nav from './componentes/Nav'
+import Signup from './vistas/Signup'
 
 export default function App() {
-  return <h1>¡Bienvenido al curso!</h1>;
+  return (
+  <Fragment>
+    <Nav className="ContenedorTemporal" />
+    <Signup />
+    
+  </Fragment>);
+  
 }
