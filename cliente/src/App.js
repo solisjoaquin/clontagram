@@ -4,10 +4,10 @@ import Signup from './vistas/Signup'
 
 export default function App() {
   return (
-  <Fragment>
-    <Nav className="ContenedorTemporal" />
-    <Signup />
-    
-  </Fragment>);
-  
+    <Fragment>
+      {/* <Nav className="ContenedorTemporal" /> */}
+      <Signup />
+
+    </Fragment>);
+
 }

@@ -14,6 +14,7 @@ h1 {
 }
 a {
   background-color: initial;
+  text-decoration: none;
 }
 b,
 strong {
@@ -397,10 +398,19 @@ body {
   align-items: center;
 }
 .Signup__img {
-  height: 70vh;
+  /* height: 70vh; */
+  height: 600px; 
   min-width: 450px;
   object-fit: contain;
   display: none;
+}
+
+.Instagram_Name_img {
+  max-width: 70%;
+  /*Alinear una imagen en un div*/
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 @media (min-width: 768px) {
   .Signup__img {
@@ -408,7 +418,7 @@ body {
   }
 }
 .FormContainer {
-  max-width: 20rem;
+  max-width: 350px;
   margin-left: auto;
   margin-right: auto;
   background-color: #fff;
@@ -449,7 +459,7 @@ body {
   text-align: center;
   margin-bottom: 1rem;
   color: #8795a1;
-  font-weight: 500;
+  font-weight: 600;
 }
 .Feed {
   max-width: 40rem;
