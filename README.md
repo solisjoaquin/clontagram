@@ -1,5 +1,7 @@
 # Clontagram
 
+![clontagram](https://github.com/solisjoaquin/clontagram/blob/main/cliente/src/imagenes/Clontagram.PNG)
+
 Este es el repositorio para el código de [https://clontagram.com](https://clontagram.com).
 
 ## Descripción del proyecto
