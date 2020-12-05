@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Axios from 'axios'
 import Main from '../componentes/Main'
 
-export default function Login() {
+export default function Login({ login }) {
 
     const [emailYPassword, setEmailYPassword] = useState({
         email: '',
@@ -21,9 +20,9 @@ export default function Login() {
     async function handleSubmit(e) {
         e.preventDefault();
 
+
         try {
-            const { data } = await Axios.post('/api/usuarios/login', emailYPassword);
-            console.log(data);
+            login(emailYPassword.email, emailYPassword.password)
         } catch (error) {
             console.log(error)
         }

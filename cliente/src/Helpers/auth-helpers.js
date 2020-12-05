@@ -16,6 +16,8 @@ export function deleteToken() {
 
 export function initAxiosInterceptors() {
     Axios.interceptors.request.use(function (config) {
+
+        const token = getToken();
         if (token) {
             config.headers.Authorization = `bearer ${token}`
         }

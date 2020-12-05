@@ -4,7 +4,7 @@ import Main from '../componentes/Main'
 import ImageSignup from '../imagenes/signup.png'
 import InstagramName from '../imagenes/logo.png'
 
-export default function Signup() {
+export default function Signup({ signup }) {
     const [usuario, setUsuario] = useState({
         email: '',
         username: '',
@@ -35,8 +35,8 @@ export default function Signup() {
         e.preventDefault();
 
         try {
-            const { data } = await Axios.post('/api/usuarios/signup', usuario);
-            console.log(data);
+            signup(usuario)
+
         } catch (error) {
             console.log(error)
         }
