@@ -8,6 +8,7 @@ import Nav from './componentes/Nav'
 import Signup from './vistas/Signup'
 import Login from './vistas/Login'
 import Loading from './componentes/Loading'
+import Error from './componentes/Error'
 import Main from './componentes/Main'
 
 initAxiosInterceptors();
@@ -16,6 +17,8 @@ export default function App() {
   // the initial value is null because we don´t know if the user exists yet
   const [usuario, setUsuario] = useState(null);
   const [cargandoUsuario, setCargandoUsuario] = useState(true);
+  const [error, setError] = useState(null);
+
 
   useEffect(() => {
 
@@ -55,6 +58,14 @@ export default function App() {
     deleteToken()
   }
 
+  function mostrarError(mensaje) {
+    setError(mensaje);
+  }
+
+  function esconderError() {
+    setError(null)
+  }
+
   /*   if (cargandoUsuario) {
       return (
         <Main center >
@@ -65,6 +76,7 @@ export default function App() {
 
   return (
     <Router>
+      <Error mensaje={error} esconderError={esconderError} />
       {usuario ?
         (
 
@@ -85,6 +97,7 @@ function LoginRoutes() {
         component={() => (
           <Fragment>
             <Nav />
+
             <Main center>
 
               <h1>Soy el feed</h1>
@@ -98,16 +111,16 @@ function LoginRoutes() {
 }
 
 // this function create two routes, for login and logout
-function LogoutRoutes({ login, signup }) {
+function LogoutRoutes({ login, signup, mostrarError }) {
   return (
     <Switch>
       <Route
         path="/login/"
-        render={(props) => <Login{...props} login={login} />}
+        render={(props) => <Login{...props} login={login} mostrarError={mostrarError} />}
       />
       <Route
         // this route doesn´t have path because is the defaout route
-        render={(props) => <Signup{...props} signup={signup} />}
+        render={(props) => <Signup{...props} signup={signup} mostrarError={mostrarError} />}
         default
       />
     </Switch>

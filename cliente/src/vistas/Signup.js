@@ -5,7 +5,7 @@ import ImageSignup from '../imagenes/signup.png'
 import InstagramName from '../imagenes/logo.png'
 import { Link } from 'react-router-dom'
 
-export default function Signup({ signup }) {
+export default function Signup({ signup, mostrarError }) {
     const [usuario, setUsuario] = useState({
         email: '',
         username: '',
@@ -36,9 +36,10 @@ export default function Signup({ signup }) {
         e.preventDefault();
 
         try {
-            signup(usuario)
+            await signup(usuario)
 
         } catch (error) {
+            mostrarError(error.response.data)
             console.log(error)
         }
     }
