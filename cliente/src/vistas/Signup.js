@@ -3,6 +3,7 @@ import Axios from 'axios'
 import Main from '../componentes/Main'
 import ImageSignup from '../imagenes/signup.png'
 import InstagramName from '../imagenes/logo.png'
+import { Link } from 'react-router-dom'
 
 export default function Signup({ signup }) {
     const [usuario, setUsuario] = useState({
@@ -101,7 +102,7 @@ export default function Signup({ signup }) {
 
                         <button className="Form__submit" type="submit">Sign up</button>
                         <p className="FormContainer__info">
-                            ¿Tienes una cuenta? <a href="/">Inicia sesión</a>
+                            ¿Tienes una cuenta? <Link to="/login">Inicia sesión</Link>
                         </p>
                     </form>
                 </div>

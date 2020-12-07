@@ -1,5 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Axios from 'axios'
+
 
 import { setToken, deleteToken, getToken, initAxiosInterceptors } from './Helpers/auth-helpers'
 import Nav from './componentes/Nav'
@@ -62,12 +64,52 @@ export default function App() {
     } */
 
   return (
-    <Fragment>
-      {/* <Nav className="ContenedorTemporal" /> */}
-      {/* <Signup signup={signup} /> */}
-      <Login login={login} />
-      <div>{JSON.stringify(usuario)}</div>
+    <Router>
+      {usuario ?
+        (
 
-    </Fragment>);
+          <LoginRoutes />
+        ) : (
+          <LogoutRoutes login={login} signup={signup} />
+        )}
 
+    </Router>);
+
+}
+
+function LoginRoutes() {
+  return (
+    <Switch>
+      <Route
+        path="/"
+        component={() => (
+          <Fragment>
+            <Nav />
+            <Main center>
+
+              <h1>Soy el feed</h1>
+            </Main>
+          </Fragment>
+        )} default
+      />
+
+    </Switch>
+  )
+}
+
+// this function create two routes, for login and logout
+function LogoutRoutes({ login, signup }) {
+  return (
+    <Switch>
+      <Route
+        path="/login/"
+        render={(props) => <Login{...props} login={login} />}
+      />
+      <Route
+        // this route doesn´t have path because is the defaout route
+        render={(props) => <Signup{...props} signup={signup} />}
+        default
+      />
+    </Switch>
+  )
 }
