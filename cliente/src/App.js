@@ -8,6 +8,7 @@ import Nav from './componentes/Nav'
 import Signup from './vistas/Signup'
 import Login from './vistas/Login'
 import Loading from './componentes/Loading'
+import Upload from './vistas/Upload'
 import Error from './componentes/Error'
 import Main from './componentes/Main'
 
@@ -76,30 +77,36 @@ export default function App() {
 
   return (
     <Router>
+      <Nav usuario={usuario} />
       <Error mensaje={error} esconderError={esconderError} />
-      {usuario ?
-        (
-
-          <LoginRoutes />
-        ) : (
-          <LogoutRoutes login={login} signup={signup} />
+      {usuario ? (
+        <LoginRoutes mostrarError={mostrarError} />
+      ) : (
+          <LogoutRoutes
+            login={login}
+            signup={signup}
+            mostrarError={mostrarError}
+          />
         )}
 
     </Router>);
 
 }
 
-function LoginRoutes() {
+function LoginRoutes({ mostrarError }) {
   return (
     <Switch>
+      <Route
+        path="/upload"
+        render={(props) =>
+          <Upload{...props} mostrarError={mostrarError} />}
+      />
       <Route
         path="/"
         component={() => (
           <Fragment>
-            <Nav />
 
             <Main center>
-
               <h1>Soy el feed</h1>
             </Main>
           </Fragment>
@@ -115,7 +122,7 @@ function LogoutRoutes({ login, signup, mostrarError }) {
   return (
     <Switch>
       <Route
-        path="/login/"
+        path="/login"
         render={(props) => <Login{...props} login={login} mostrarError={mostrarError} />}
       />
       <Route
