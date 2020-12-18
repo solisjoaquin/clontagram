@@ -3,14 +3,21 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Axios from 'axios'
 
 
-import { setToken, deleteToken, getToken, initAxiosInterceptors } from './Helpers/auth-helpers'
+import {
+  setToken,
+  deleteToken,
+  getToken,
+  initAxiosInterceptors
+} from './Helpers/auth-helpers'
 import Nav from './componentes/Nav'
+import Loading from './componentes/Loading'
+import Error from './componentes/Error'
+
 import Signup from './vistas/Signup'
 import Login from './vistas/Login'
-import Loading from './componentes/Loading'
 import Upload from './vistas/Upload'
-import Error from './componentes/Error'
 import Main from './componentes/Main'
+import Feed from './vistas/Feed';
 
 initAxiosInterceptors();
 
@@ -43,7 +50,10 @@ export default function App() {
 
 
   async function login(email, password) {
-    const { data } = await Axios.post('/api/usuarios/login', { email, password });
+    const { data } = await Axios.post('/api/usuarios/login', {
+      email,
+      password
+    });
     setUsuario(data.usuario)
     setToken(data.token)
   }
@@ -98,19 +108,12 @@ function LoginRoutes({ mostrarError }) {
     <Switch>
       <Route
         path="/upload"
-        render={(props) =>
-          <Upload{...props} mostrarError={mostrarError} />}
+        render={(props) => <Upload{...props} mostrarError={mostrarError} />}
       />
       <Route
         path="/"
-        component={() => (
-          <Fragment>
-
-            <Main center>
-              <h1>Soy el feed</h1>
-            </Main>
-          </Fragment>
-        )} default
+        render={(props) => <Feed{...props} mostrarError={mostrarError} />}
+        default
       />
 
     </Switch>
